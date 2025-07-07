@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Plus, Edit, Trash2, Eye, Search, Filter } from 'lucide-react';
+import { Plus, Edit, Trash2, Search } from 'lucide-react';
 
 const EmployeeManagement = () => {
   const [employees, setEmployees] = useState([]);
