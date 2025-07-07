@@ -1,4 +1,12 @@
 {
+  "user": [
+    {
+      "id": "1",
+      "email": "nguyenvanan@email.com",
+      "positionId": "1",
+      "password": "1234"
+    }
+  ],
   "positions": [
     {
       "id": "1",
