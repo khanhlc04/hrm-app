@@ -27,7 +27,7 @@ const EmployeeManagement = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      
+
       // Fetch all data concurrently
       const [employeesRes, positionsRes, branchesRes, departmentsRes] = await Promise.all([
         fetch(`${API_BASE}/employees?deleted=false`),
@@ -51,14 +51,14 @@ const EmployeeManagement = () => {
       setPositions(positionsData);
       setBranches(branchesData);
       setDepartments(departmentsData);
-      
+
       console.log('Data loaded successfully:', {
         employees: employeesData.length,
         positions: positionsData.length,
         branches: branchesData.length,
         departments: departmentsData.length
       });
-      
+
     } catch (error) {
       console.error('Error fetching data:', error);
       alert('Lỗi khi tải dữ liệu. Vui lòng kiểm tra JSON Server có đang chạy không.');
@@ -89,12 +89,12 @@ const EmployeeManagement = () => {
   // Filter employees based on search and filters
   const filteredEmployees = employees.filter(employee => {
     const matchesSearch = employee.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         employee.employeeCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         employee.email.toLowerCase().includes(searchTerm.toLowerCase());
-    
+      employee.employeeCode.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      employee.email.toLowerCase().includes(searchTerm.toLowerCase());
+
     const matchesBranch = filterBranch === '' || employee.branchId === parseInt(filterBranch);
     const matchesPosition = filterPosition === '' || employee.positionId === parseInt(filterPosition);
-    
+
     return matchesSearch && matchesBranch && matchesPosition;
   });
 
@@ -158,12 +158,12 @@ const EmployeeManagement = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const url = employee 
+        const url = employee
           ? `${API_BASE}/employees/${employee.id}`
           : `${API_BASE}/employees`;
-        
+
         const method = employee ? 'PUT' : 'POST';
-        
+
         await fetch(url, {
           method,
           headers: {
@@ -171,7 +171,7 @@ const EmployeeManagement = () => {
           },
           body: JSON.stringify(formData)
         });
-        
+
         onSubmit();
         fetchData();
       } catch (error) {
@@ -185,7 +185,7 @@ const EmployeeManagement = () => {
           <h2 className="text-xl font-bold mb-4">
             {employee ? 'Cập nhật nhân viên' : 'Thêm nhân viên mới'}
           </h2>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -193,108 +193,108 @@ const EmployeeManagement = () => {
                 <input
                   type="text"
                   value={formData.employeeCode}
-                  onChange={(e) => setFormData({...formData, employeeCode: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, employeeCode: e.target.value })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-1">Tên nhân viên</label>
                 <input
                   type="text"
                   value={formData.fullName}
-                  onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-1">Ngày sinh</label>
                 <input
                   type="date"
                   value={formData.birthDate}
-                  onChange={(e) => setFormData({...formData, birthDate: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-1">Số CCCD</label>
                 <input
                   type="text"
                   value={formData.idNumber}
-                  onChange={(e) => setFormData({...formData, idNumber: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, idNumber: e.target.value })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-1">Giới tính</label>
                 <select
                   value={formData.gender}
-                  onChange={(e) => setFormData({...formData, gender: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="Nam">Nam</option>
                   <option value="Nữ">Nữ</option>
                 </select>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-1">Số điện thoại</label>
                 <input
                   type="tel"
                   value={formData.phoneNumber}
-                  onChange={(e) => setFormData({...formData, phoneNumber: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium mb-1">Địa chỉ</label>
               <input
                 type="text"
                 value={formData.address}
-                onChange={(e) => setFormData({...formData, address: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                 className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium mb-1">Email</label>
               <input
                 type="email"
                 value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium mb-1">Ngày vào làm</label>
                 <input
                   type="date"
                   value={formData.startDate}
-                  onChange={(e) => setFormData({...formData, startDate: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-1">Trạng thái</label>
                 <select
                   value={formData.status}
-                  onChange={(e) => setFormData({...formData, status: e.target.value})}
+                  onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="Đang làm việc">Đang làm việc</option>
@@ -302,12 +302,12 @@ const EmployeeManagement = () => {
                   <option value="Tạm nghỉ">Tạm nghỉ</option>
                 </select>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-1">Chức vụ</label>
                 <select
                   value={formData.positionId}
-                  onChange={(e) => setFormData({...formData, positionId: parseInt(e.target.value)})}
+                  onChange={(e) => setFormData({ ...formData, positionId: parseInt(e.target.value) })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                   disabled={!positions.length}
                 >
@@ -322,12 +322,12 @@ const EmployeeManagement = () => {
                   )}
                 </select>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-1">Phòng ban</label>
                 <select
                   value={formData.departmentId}
-                  onChange={(e) => setFormData({...formData, departmentId: parseInt(e.target.value)})}
+                  onChange={(e) => setFormData({ ...formData, departmentId: parseInt(e.target.value) })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                   disabled={!departments.length}
                 >
@@ -342,23 +342,23 @@ const EmployeeManagement = () => {
                   )}
                 </select>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-1">Lương cơ bản</label>
                 <input
                   type="number"
                   value={formData.basicSalary}
-                  onChange={(e) => setFormData({...formData, basicSalary: parseInt(e.target.value)})}
+                  onChange={(e) => setFormData({ ...formData, basicSalary: parseInt(e.target.value) })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                   required
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium mb-1">Chi nhánh</label>
                 <select
                   value={formData.branchId}
-                  onChange={(e) => setFormData({...formData, branchId: parseInt(e.target.value)})}
+                  onChange={(e) => setFormData({ ...formData, branchId: parseInt(e.target.value) })}
                   className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
                   disabled={!branches.length}
                 >
@@ -374,7 +374,7 @@ const EmployeeManagement = () => {
                 </select>
               </div>
             </div>
-            
+
             <div className="flex gap-4 pt-4">
               <button
                 type="submit"
@@ -440,7 +440,7 @@ const EmployeeManagement = () => {
                 className="w-full pl-10 pr-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            
+
             <select
               value={filterBranch}
               onChange={(e) => setFilterBranch(e.target.value)}
@@ -456,7 +456,7 @@ const EmployeeManagement = () => {
                 </option>
               ))}
             </select>
-            
+
             <select
               value={filterPosition}
               onChange={(e) => setFilterPosition(e.target.value)}
@@ -492,7 +492,7 @@ const EmployeeManagement = () => {
               </div>
             </div>
           )}
-          
+
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-50">
@@ -550,13 +550,12 @@ const EmployeeManagement = () => {
                       {formatCurrency(employee.basicSalary)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                        employee.status === 'Đang làm việc' 
+                      <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${employee.status === 'Đang làm việc'
                           ? 'bg-green-100 text-green-800'
                           : employee.status === 'Nghỉ phép'
-                          ? 'bg-yellow-100 text-yellow-800'
-                          : 'bg-red-100 text-red-800'
-                      }`}>
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : 'bg-red-100 text-red-800'
+                        }`}>
                         {employee.status}
                       </span>
                     </td>
@@ -661,6 +660,7 @@ const EmployeeManagement = () => {
         {/* Modals */}
         {showAddModal && (
           <EmployeeForm
+            employee={null}
             onSubmit={() => setShowAddModal(false)}
             onCancel={() => setShowAddModal(false)}
           />

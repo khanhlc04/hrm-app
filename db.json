@@ -61,6 +61,11 @@
       "id": "3",
       "name": "Phòng Quản Lý",
       "description": "Quản lý vận hành và giám sát"
+    },
+    {
+      "id": "4",
+      "name": " Phục Vụ",
+      "description": "Phục vụ, hỗ trợ buôn bán đồ uống"
     }
   ],
   "employees": [
@@ -171,32 +176,39 @@
       "basicSalary": 7500000,
       "branchId": 3,
       "deleted": true
+    },
+    {
+      "employeeCode": "NV002",
+      "fullName": "Khánh",
+      "birthDate": "2004-12-22",
+      "idNumber": "1234567890",
+      "gender": "Nam",
+      "address": "Hà Nội",
+      "phoneNumber": "0966695785",
+      "email": "khanh@gmail.com",
+      "startDate": "2025-07-08",
+      "status": "Đang làm việc",
+      "positionId": 1,
+      "departmentId": 4,
+      "basicSalary": 100000,
+      "branchId": 1,
+      "deleted": false,
+      "id": "cd23"
     }
   ],
   "contracts": [
     {
-      "id": "1",
-      "contractCode": "HD001",
-      "signDate": "2023-01-15",
+      "id": "8d0b",
       "employeeId": 1,
-      "status": "Còn hiệu lực",
-      "contractImage": "https://via.placeholder.com/400x300/blue/white?text=Hợp+đồng+NV001"
-    },
-    {
-      "id": "2",
-      "contractCode": "HD002",
-      "signDate": "2022-06-10",
-      "employeeId": 2,
-      "status": "Còn hiệu lực",
-      "contractImage": "https://via.placeholder.com/400x300/green/white?text=Hợp+đồng+NV002"
-    },
-    {
-      "id": "3",
-      "contractCode": "HD003",
-      "signDate": "2021-03-20",
-      "employeeId": 3,
-      "status": "Còn hiệu lực",
-      "contractImage": "https://via.placeholder.com/400x300/orange/white?text=Hợp+đồng+NV003"
+      "contractNumber": "HD001",
+      "contractType": "Hợp đồng chính thức",
+      "startDate": "2025-07-10",
+      "endDate": "2025-07-23",
+      "benefits": "abcxyz",
+      "contractFile": "https://res.cloudinary.com/dp6hjihhh/image/upload/v1751903239/d9eqpwnwucumglvunkai.jpg",
+      "status": "Có hiệu lực",
+      "notes": "lorem ispur",
+      "deleted": false
     }
   ]
 }
