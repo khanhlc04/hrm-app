@@ -1,13 +1,194 @@
 {
-  "posts": [
-    { "id": "1", "title": "a title", "views": 100 },
-    { "id": "2", "title": "another title", "views": 200 }
+  "positions": [
+    {
+      "id": "1",
+      "name": "Nhân viên phục vụ quầy",
+      "description": "Phục vụ khách hàng, pha chế đồ uống, thu ngân"
+    },
+    {
+      "id": "2",
+      "name": "Nhân viên nhân sự",
+      "description": "Quản lý nhân sự, tuyển dụng, đào tạo"
+    },
+    {
+      "id": "3",
+      "name": "Quản lý chi nhánh",
+      "description": "Quản lý vận hành chi nhánh, giám sát nhân viên"
+    },
+    {
+      "id": "4",
+      "name": "Giám đốc",
+      "description": "Quản lý toàn bộ hệ thống, ra quyết định chiến lược"
+    }
   ],
-  "comments": [
-    { "id": "1", "text": "a comment about post 1", "postId": "1" },
-    { "id": "2", "text": "another comment about post 1", "postId": "1" }
+  "branches": [
+    {
+      "id": "1",
+      "name": "Chi nhánh Hoàn Kiếm",
+      "address": "123 Hàng Bài, Hoàn Kiếm, Hà Nội"
+    },
+    {
+      "id": "2",
+      "name": "Chi nhánh Cầu Giấy",
+      "address": "456 Nguyễn Văn Cừ, Cầu Giấy, Hà Nội"
+    },
+    {
+      "id": "3",
+      "name": "Chi nhánh Thanh Xuân",
+      "address": "789 Lê Văn Lương, Thanh Xuân, Hà Nội"
+    }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "departments": [
+    {
+      "id": "1",
+      "name": "Phòng Kinh Doanh",
+      "description": "Quản lý bán hàng và dịch vụ khách hàng"
+    },
+    {
+      "id": "2",
+      "name": "Phòng Nhân Sự",
+      "description": "Quản lý nhân sự và đào tạo"
+    },
+    {
+      "id": "3",
+      "name": "Phòng Quản Lý",
+      "description": "Quản lý vận hành và giám sát"
+    }
+  ],
+  "employees": [
+    {
+      "id": "1",
+      "employeeCode": "NV001",
+      "fullName": "Nguyễn Văn An",
+      "birthDate": "1995-05-15",
+      "idNumber": "012345678901",
+      "gender": "Nam",
+      "address": "123 Nguyễn Trãi, Đống Đa, Hà Nội",
+      "phoneNumber": "0987654321",
+      "email": "nguyenvanan@email.com",
+      "startDate": "2023-01-15",
+      "status": "Đang làm việc",
+      "positionId": 1,
+      "departmentId": 1,
+      "basicSalary": 8000000,
+      "branchId": 1,
+      "deleted": false
+    },
+    {
+      "id": "2",
+      "employeeCode": "NV002",
+      "fullName": "Trần Thị Bình",
+      "birthDate": "1992-08-22",
+      "idNumber": "012345678902",
+      "gender": "Nữ",
+      "address": "456 Láng Hạ, Đống Đa, Hà Nội",
+      "phoneNumber": "0987654322",
+      "email": "tranthibinh@email.com",
+      "startDate": "2022-06-10",
+      "status": "Đang làm việc",
+      "positionId": 2,
+      "departmentId": 2,
+      "basicSalary": 12000000,
+      "branchId": 1,
+      "deleted": false
+    },
+    {
+      "id": "3",
+      "employeeCode": "NV003",
+      "fullName": "Lê Văn Cường",
+      "birthDate": "1988-12-03",
+      "idNumber": "012345678903",
+      "gender": "Nam",
+      "address": "789 Giải Phóng, Hai Bà Trưng, Hà Nội",
+      "phoneNumber": "0987654323",
+      "email": "levancuong@email.com",
+      "startDate": "2021-03-20",
+      "status": "Đang làm việc",
+      "positionId": 3,
+      "departmentId": 3,
+      "basicSalary": 15000000,
+      "branchId": 2,
+      "deleted": false
+    },
+    {
+      "id": "4",
+      "employeeCode": "NV004",
+      "fullName": "Phạm Thị Dung",
+      "birthDate": "1990-04-18",
+      "idNumber": "012345678904",
+      "gender": "Nữ",
+      "address": "321 Thái Hà, Đống Đa, Hà Nội",
+      "phoneNumber": "0987654324",
+      "email": "phamthidung@email.com",
+      "startDate": "2023-09-01",
+      "status": "Đang làm việc",
+      "positionId": 1,
+      "departmentId": 1,
+      "basicSalary": 8500000,
+      "branchId": 2,
+      "deleted": false
+    },
+    {
+      "id": "5",
+      "employeeCode": "NV005",
+      "fullName": "Hoàng Văn Em",
+      "birthDate": "1985-11-30",
+      "idNumber": "012345678905",
+      "gender": "Nam",
+      "address": "654 Kim Mã, Ba Đình, Hà Nội",
+      "phoneNumber": "0987654325",
+      "email": "hoangvanem@email.com",
+      "startDate": "2020-01-10",
+      "status": "Đang làm việc",
+      "positionId": 4,
+      "departmentId": 3,
+      "basicSalary": 25000000,
+      "branchId": 1,
+      "deleted": true
+    },
+    {
+      "id": "6",
+      "employeeCode": "NV006",
+      "fullName": "Vũ Thị Giang",
+      "birthDate": "1997-07-12",
+      "idNumber": "012345678906",
+      "gender": "Nữ",
+      "address": "987 Cầu Giấy, Cầu Giấy, Hà Nội",
+      "phoneNumber": "0987654326",
+      "email": "vuthigiang@email.com",
+      "startDate": "2023-11-15",
+      "status": "Đang làm việc",
+      "positionId": 1,
+      "departmentId": 1,
+      "basicSalary": 7500000,
+      "branchId": 3,
+      "deleted": true
+    }
+  ],
+  "contracts": [
+    {
+      "id": "1",
+      "contractCode": "HD001",
+      "signDate": "2023-01-15",
+      "employeeId": 1,
+      "status": "Còn hiệu lực",
+      "contractImage": "https://via.placeholder.com/400x300/blue/white?text=Hợp+đồng+NV001"
+    },
+    {
+      "id": "2",
+      "contractCode": "HD002",
+      "signDate": "2022-06-10",
+      "employeeId": 2,
+      "status": "Còn hiệu lực",
+      "contractImage": "https://via.placeholder.com/400x300/green/white?text=Hợp+đồng+NV002"
+    },
+    {
+      "id": "3",
+      "contractCode": "HD003",
+      "signDate": "2021-03-20",
+      "employeeId": 3,
+      "status": "Còn hiệu lực",
+      "contractImage": "https://via.placeholder.com/400x300/orange/white?text=Hợp+đồng+NV003"
+    }
+  ]
 }
