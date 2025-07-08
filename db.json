@@ -11,6 +11,12 @@
       "email": "lhphuc822004@gmail.com",
       "password": "123456",
       "positionId": "1"
+    },
+    {
+      "id": "1751915951486",
+      "email": "lhphuc8df22004@gmail.com",
+      "password": "123456",
+      "positionId": "1"
     }
   ],
   "positions": [
@@ -205,56 +211,64 @@
       "contractImage": "https://via.placeholder.com/400x300/orange/white?text=Hợp+đồng+NV003"
     }
   ],
-  "shifts": [
+  "tbl_ChamCong": [
     {
       "id": "1",
-      "name": "Ca sáng",
-      "startTime": "08:00",
-      "endTime": "12:00"
+      "employeeId": "1",
+      "soNgayLam": 27,
+      "soCaLam": 2,
+      "heSoLuong": 150000
     },
     {
       "id": "2",
-      "name": "Ca chiều",
-      "startTime": "13:00",
-      "endTime": "17:00"
+      "employeeId": "2",
+      "soNgayLam": 24,
+      "soCaLam": 2,
+      "heSoLuong": 160000
     },
     {
       "id": "3",
-      "name": "Ca tối",
-      "startTime": "18:00",
-      "endTime": "22:00"
+      "employeeId": "3",
+      "soNgayLam": 27,
+      "soCaLam": 1,
+      "heSoLuong": 170000
+    },
+    {
+      "id": "4",
+      "employeeId": "4",
+      "soNgayLam": 22,
+      "soCaLam": 2,
+      "heSoLuong": 155000
     }
   ],
-  "registrations": [
+  "tbl_ThuongPhat": [
     {
       "id": "1",
-      "userId": "1",
-      "shiftId": "1",
-      "date": "2025-07-07"
-    }
-  ],
-  "attendances": [
+      "employeeId": "1",
+      "thang": "2025-07",
+      "loai": "Thưởng",
+      "soTien": 500000
+    },
     {
-      "id": "1",
-      "userId": "1",
-      "shiftId": "1",
-      "date": "2025-07-07",
-      "checkIn": "08:01",
-      "checkOut": "22:34"
+      "id": "2",
+      "employeeId": "2",
+      "thang": "2025-07",
+      "loai": "Phạt",
+      "soTien": 300000
+    },
+    {
+      "id": "3",
+      "employeeId": "3",
+      "thang": "2025-07",
+      "loai": "Thưởng",
+      "soTien": 1000000
+    },
+    {
+      "id": "4",
+      "employeeId": "4",
+      "thang": "2025-07",
+      "loai": "Phạt",
+      "soTien": 200000
     }
-  ],
-  "bonuses": [
-  {
-    "id": "1",
-    "userId": "1",
-    "month": "2025-07",
-    "amount": 500000
-  },
-  {
-    "id": "2",
-    "userId": "2",
-    "month": "2025-07",
-    "amount": 300000
-  }
-]
+  ]
 }

@@ -150,7 +150,6 @@ const EmployeeManagement = () => {
       status: employee?.status || 'Đang làm việc',
       positionId: employee?.positionId || 1,
       departmentId: employee?.departmentId || 1,
-      basicSalary: employee?.basicSalary || 0,
       branchId: employee?.branchId || 1,
       deleted: false
     });
@@ -343,16 +342,6 @@ const EmployeeManagement = () => {
                 </select>
               </div>
               
-              <div>
-                <label className="block text-sm font-medium mb-1">Lương cơ bản</label>
-                <input
-                  type="number"
-                  value={formData.basicSalary}
-                  onChange={(e) => setFormData({...formData, basicSalary: parseInt(e.target.value)})}
-                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-blue-500"
-                  required
-                />
-              </div>
               
               <div>
                 <label className="block text-sm font-medium mb-1">Chi nhánh</label>
@@ -513,9 +502,6 @@ const EmployeeManagement = () => {
                     Số điện thoại
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Lương cơ bản
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Trạng thái
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -545,9 +531,6 @@ const EmployeeManagement = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {employee.phoneNumber}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                      {formatCurrency(employee.basicSalary)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
@@ -645,15 +628,7 @@ const EmployeeManagement = () => {
                 <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center">
                   <span className="text-white font-bold text-sm">💰</span>
                 </div>
-              </div>
-              <div className="ml-4">
-                <div className="text-sm font-medium text-gray-500">Lương TB</div>
-                <div className="text-2xl font-bold text-gray-900">
-                  {formatCurrency(
-                    employees.reduce((sum, emp) => sum + emp.basicSalary, 0) / employees.length || 0
-                  )}
-                </div>
-              </div>
+              </div
             </div>
           </div>
         </div>
