@@ -1,86 +1,127 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const API = 'http://localhost:8000'
+interface Employee {
+  id: string;
+  fullName: string;
+}
 
-export default function SalaryPage() {
-  const [users, setUsers] = useState([])
-  const [attendances, setAttendances] = useState([])
-  const [bonuses, setBonuses] = useState([])
+interface ChamCong {
+  employeeId: string;
+  soNgayLam: number;
+  soCaLam: number;
+  heSoLuong: number;
+}
 
-  const currentMonth = new Date().toISOString().slice(0, 7) // YYYY-MM
+interface ThuongPhat {
+  employeeId: string;
+  thang: string;
+  loai: "Thưởng" | "Phạt";
+  soTien: number;
+}
+
+interface SalaryInfo {
+  hoTen: string;
+  luongCoBan: number;
+  thuong: number;
+  phat: number;
+  tongLuong: number;
+}
+
+const SalaryTable: React.FC = () => {
+  const [salaries, setSalaries] = useState<SalaryInfo[]>([]);
 
   useEffect(() => {
-    fetch(`${API}/users`).then(res => res.json()).then(setUsers)
-    fetch(`${API}/attendances`).then(res => res.json()).then(setAttendances)
-    fetch(`${API}/bonuses`).then(res => res.json()).then(setBonuses)
-  }, [])
+    const fetchData = async () => {
+      try {
+        const [empRes, chamCongRes, thuongPhatRes] = await Promise.all([
+          axios.get<Employee[]>("http://localhost:8000/employees"),
+          axios.get<ChamCong[]>("http://localhost:8000/tbl_ChamCong"),
+          axios.get<ThuongPhat[]>("http://localhost:8000/tbl_ThuongPhat"),
+        ]);
 
-  const calculateHours = (checkIn: string, checkOut: string) => {
-    if (!checkIn || !checkOut) return 0
-    const [h1, m1] = checkIn.split(':').map(Number)
-    const [h2, m2] = checkOut.split(':').map(Number)
-    return ((h2 * 60 + m2) - (h1 * 60 + m1)) / 60
-  }
+        const salaries = empRes.data.map((emp) => {
+          const chamCong = chamCongRes.data.find((c) => c.employeeId === emp.id);
+          const thuong = thuongPhatRes.data
+            .filter((t) => t.employeeId === emp.id && t.loai === "Thưởng")
+            .reduce((sum, t) => sum + t.soTien, 0);
+          const phat = thuongPhatRes.data
+            .filter((t) => t.employeeId === emp.id && t.loai === "Phạt")
+            .reduce((sum, t) => sum + t.soTien, 0);
 
-  const getBonusForUser = (userId: string) => {
-    const bonus = bonuses.find((b: any) => b.userId === userId && b.month === currentMonth)
-    return bonus ? bonus.amount : 0
-  }
+          const luongCoBan = chamCong
+            ? chamCong.soNgayLam * chamCong.soCaLam * chamCong.heSoLuong
+            : 0;
 
-  const salaryData = users.map((user: any) => {
-    const userAttendances = attendances.filter((a: any) =>
-      a.userId === user.id &&
-      a.date.startsWith(currentMonth) &&
-      a.checkIn &&
-      a.checkOut
-    )
+          return {
+            hoTen: emp.fullName,
+            luongCoBan,
+            thuong,
+            phat,
+            tongLuong: luongCoBan + thuong - phat,
+          };
+        });
 
-    const totalHours = userAttendances.reduce((sum: number, a: any) =>
-      sum + calculateHours(a.checkIn, a.checkOut), 0)
+        setSalaries(salaries);
+      } catch (err) {
+        console.error("Lỗi khi tải dữ liệu:", err);
+      }
+    };
 
-    const totalSalary = totalHours * (user.salaryPerHour || 0)
-    const bonus = getBonusForUser(user.id)
-    const finalSalary = totalSalary + bonus
-
-    return {
-      ...user,
-      totalHours,
-      totalSalary,
-      bonus,
-      finalSalary
-    }
-  })
+    fetchData();
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <h1 className="text-3xl font-bold text-yellow-600 mb-6 text-center">📊 Bảng Lương Tháng {currentMonth}</h1>
-
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border rounded-xl overflow-hidden shadow">
-          <thead className="bg-yellow-100">
+    <div className="p-6">
+      <h2 className="text-2xl font-bold mb-6 text-center text-blue-700">
+        Bảng Lương Nhân Viên
+      </h2>
+      <div className="overflow-x-auto rounded-lg shadow-lg">
+        <table className="min-w-full bg-white rounded-lg overflow-hidden">
+          <thead className="bg-blue-100 text-blue-900">
             <tr>
-              <th className="p-3 border">👤 Nhân viên</th>
-              <th className="p-3 border">⏱️ Giờ làm</th>
-              <th className="p-3 border">💸 Lương</th>
-              <th className="p-3 border">🎁 Thưởng</th>
-              <th className="p-3 border">🧾 Tổng nhận</th>
+              <th className="py-3 px-4 border">Họ Tên</th>
+              <th className="py-3 px-4 border">Lương Cơ Bản</th>
+              <th className="py-3 px-4 border">Thưởng</th>
+              <th className="py-3 px-4 border">Phạt</th>
+              <th className="py-3 px-4 border">Tổng Lương</th>
             </tr>
           </thead>
           <tbody>
-            {salaryData.map((u: any) => (
-              <tr key={u.id} className="text-center">
-                <td className="p-3 border">{u.fullName}</td>
-                <td className="p-3 border">{u.totalHours.toFixed(2)} giờ</td>
-                <td className="p-3 border">{u.totalSalary.toLocaleString()} đ</td>
-                <td className="p-3 border text-green-600">{u.bonus.toLocaleString()} đ</td>
-                <td className="p-3 border font-bold text-blue-600">{u.finalSalary.toLocaleString()} đ</td>
+            {salaries.map((item, index) => (
+              <tr
+                key={index}
+                className="hover:bg-gray-100 transition-all duration-200"
+              >
+                <td className="py-2 px-4 border">{item.hoTen}</td>
+                <td className="py-2 px-4 border text-blue-800 font-medium">
+                  {item.luongCoBan.toLocaleString()} đ
+                </td>
+                <td className="py-2 px-4 border text-green-700 font-semibold">
+                  +{item.thuong.toLocaleString()} đ
+                </td>
+                <td className="py-2 px-4 border text-red-600 font-semibold">
+                  -{item.phat.toLocaleString()} đ
+                </td>
+                <td className="py-2 px-4 border font-bold text-indigo-700">
+                  {item.tongLuong.toLocaleString()} đ
+                </td>
               </tr>
             ))}
+            {salaries.length === 0 && (
+              <tr>
+                <td colSpan={5} className="text-center py-4 text-gray-500">
+                  Không có dữ liệu lương để hiển thị.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
+
+export default SalaryTable;
