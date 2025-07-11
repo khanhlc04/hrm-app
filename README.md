@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📘 HRM APP – Human Resource Management App
+Ứng dụng quản lý nhân sự cơ bản với các chức năng thêm, sửa, xóa và lọc nhân viên bằng dropdown. Giao diện người dùng được xây dựng bằng Next.js, dữ liệu được quản lý thông qua JSON Server.
 
-## Getting Started
-
-First, run the development server:
-
-```bash
+🛠️ Cài đặt & Chạy dự án
+1. Clone repo
+cd hrm-app
+2. Cài đặt các gói cần thiết
+npm install
+3. Khởi động dự án
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Mở trình duyệt và truy cập: http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🚀 Tính năng chính
+✅ Quản lý nhân viên tại /admin/employee
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Thêm, sửa, xóa thông tin nhân viên
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Tìm kiếm nhân viên theo tên
 
-## Learn More
+Lọc theo chi nhánh hoặc chức vụ
 
-To learn more about Next.js, take a look at the following resources:
+✅ Quản lý hợp đồng tại /admin/constrast
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Thêm hợp đồng mới nếu nhân viên chưa có hợp đồng
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Cập nhật hợp đồng nếu nhân viên đã có hợp đồng
 
-## Deploy on Vercel
+✅ Xem bảng lương tại /admin/salary
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Hiển thị danh sách lương của toàn bộ nhân viên
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🧑‍💼 Hướng dẫn sử dụng
+1. Trang quản lý nhân viên
+🔗 Truy cập: http://localhost:3000/admin/employee
+
+Nhấn "Thêm nhân viên" để thêm mới
+
+Nhấn "Sửa" hoặc "Xóa" tại từng dòng để chỉnh sửa hoặc xóa nhân viên
+
+Sử dụng ô tìm kiếm để lọc theo tên nhân viên
+
+Dùng các dropdown để lọc theo chi nhánh hoặc chức vụ
+
+2. Trang quản lý hợp đồng
+🔗 Truy cập: http://localhost:3000/admin/constrast
+
+Danh sách nhân viên sẽ hiển thị kèm thông tin hợp đồng (nếu có)
+
+Với nhân viên chưa có hợp đồng, nhấn "Thêm hợp đồng"
+
+Với nhân viên đã có hợp đồng, nhấn "Cập nhật" để chỉnh sửa
+
+3. Trang hiển thị bảng lương
+🔗 Truy cập: http://localhost:3000/admin/salary
+
+Hiển thị danh sách các nhân viên và thông tin lương tương ứng
+
+Dữ liệu được đồng bộ từ hệ thống nhân viên và hợp đồng

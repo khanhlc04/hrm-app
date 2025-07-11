@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 interface Employee {
   id: string;
@@ -33,21 +32,30 @@ interface SalaryInfo {
 const SalaryTable: React.FC = () => {
   const [salaries, setSalaries] = useState<SalaryInfo[]>([]);
 
+  const API_BASE = 'http://localhost:8000';
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const [empRes, chamCongRes, thuongPhatRes] = await Promise.all([
-          axios.get<Employee[]>("http://localhost:8000/employees"),
-          axios.get<ChamCong[]>("http://localhost:8000/tbl_ChamCong"),
-          axios.get<ThuongPhat[]>("http://localhost:8000/tbl_ThuongPhat"),
+          fetch(`${API_BASE}/employees`),
+          fetch(`${API_BASE}/tbl_ChamCong`),
+          fetch(`${API_BASE}/tbl_ThuongPhat`),
         ]);
 
-        const salaries = empRes.data.map((emp) => {
-          const chamCong = chamCongRes.data.find((c) => c.employeeId === emp.id);
-          const thuong = thuongPhatRes.data
+        const [employees, chamCongs, thuongPhats] = await Promise.all([
+          empRes.json(),
+          chamCongRes.json(),
+          thuongPhatRes.json(),
+        ]);
+
+
+        const salaries = employees.map((emp) => {
+          const chamCong = chamCongs.find((c) => c.employeeId === emp.id);
+          const thuong = thuongPhats
             .filter((t) => t.employeeId === emp.id && t.loai === "Thưởng")
             .reduce((sum, t) => sum + t.soTien, 0);
-          const phat = thuongPhatRes.data
+          const phat = thuongPhats
             .filter((t) => t.employeeId === emp.id && t.loai === "Phạt")
             .reduce((sum, t) => sum + t.soTien, 0);
 

@@ -206,6 +206,23 @@
       "branchId": 1,
       "deleted": false,
       "id": "cd23"
+    },
+    {
+      "employeeCode": "NV005",
+      "fullName": "Khánh 321",
+      "birthDate": "2009-02-12",
+      "idNumber": "123456789",
+      "gender": "Nam",
+      "address": "Hà Nội",
+      "phoneNumber": "0123456789",
+      "email": "khanh@gmail.com",
+      "startDate": "2025-07-10",
+      "status": "Đang làm việc",
+      "positionId": 1,
+      "departmentId": 4,
+      "branchId": 1,
+      "deleted": false,
+      "id": "ccb7"
     }
   ],
   "contracts": [
@@ -220,6 +237,32 @@
       "contractFile": "https://res.cloudinary.com/dp6hjihhh/image/upload/v1751903239/d9eqpwnwucumglvunkai.jpg",
       "status": "Có hiệu lực",
       "notes": "lorem ispur",
+      "deleted": false
+    },
+    {
+      "id": "040b",
+      "employeeId": 3,
+      "contractNumber": "HD1",
+      "contractType": "Hợp đồng thử việc",
+      "startDate": "2025-07-08",
+      "endDate": "2025-07-12",
+      "benefits": "Không có Phúc Lợi",
+      "contractFile": "https://res.cloudinary.com/dp6hjihhh/image/upload/v1751939859/odqtfmsvnxtj6gmbtulh.png",
+      "status": "Có hiệu lực",
+      "notes": "không có",
+      "deleted": false
+    },
+    {
+      "id": "fec1",
+      "employeeId": 2,
+      "contractNumber": "HD321",
+      "contractType": "Hợp đồng chính thức",
+      "startDate": "2025-07-08",
+      "endDate": "2025-07-24",
+      "benefits": "demo",
+      "contractFile": "https://res.cloudinary.com/dp6hjihhh/image/upload/v1751940260/irj73k6bms3elzgr35bn.png",
+      "status": "Có hiệu lực",
+      "notes": "demo",
       "deleted": false
     }
   ],
